@@ -102,8 +102,9 @@ describe ('ngInputCurrency', function () {
       expect(scope.value).toBe(123);
       expect(element.val()).toBe(currencyFilter(scope.value));
 
-      setViewValue(element, '123.50');
-      expect(element.val()).toEqual('123.50');
+      const textValue = '123' + locale.NUMBER_FORMATS.DECIMAL_SEP + '50'
+      setViewValue(element, textValue);
+      expect(element.val()).toEqual(textValue);
       expect(scope.value).toBe(123);
       blurElement(element);
       expect(scope.value).toBe(123.50);
@@ -153,8 +154,8 @@ describe ('ngInputCurrency', function () {
 
     describe('.preformatValue', function () {
       it('should remove the CURRENCY_SYM if its in the value', function () {
-        expect(util.preformatValue(locale.NUMBER_FORMATS.CURRENCY_SYM + '123' + locale.NUMBER_FORMATS.GROUP_SEP + '45')).toBe('123.45');
-        expect(util.preformatValue('123' + locale.NUMBER_FORMATS.GROUP_SEP + '45' + locale.NUMBER_FORMATS.CURRENCY_SYM)).toBe('123.45');
+        expect(util.preformatValue(locale.NUMBER_FORMATS.CURRENCY_SYM + '123' + locale.NUMBER_FORMATS.DECIMAL_SEP + '45')).toBe('123.45');
+        expect(util.preformatValue('123' + locale.NUMBER_FORMATS.DECIMAL_SEP + '45' + locale.NUMBER_FORMATS.CURRENCY_SYM)).toBe('123.45');
       });
 
       it('should change the GROUP_SEP to a . if the GROUP_SEP only exists one place and DECIMAL_SEP does not exists', function () {

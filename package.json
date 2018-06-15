@@ -52,5 +52,8 @@
   },
   "browserify-global-shim": {
     "angular": "angular"
+  },
+  "dependencies": {
+    "browserify": "^16.2.2"
   }
 }

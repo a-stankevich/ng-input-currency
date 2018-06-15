@@ -73,9 +73,7 @@ angular.module('ngInputCurrency').directive('ngInputCurrency', ['$locale','$filt
     });
 
     $ngModel.$parsers.push(function(value) {
-      value = util.preformatValue(value);
-
-      var currency = util.toFloat(filter(value));
+      var currency = util.toFloat(value);
       if (util.isValid(currency)) {
         $ngModel.$setViewValue(filter(currency));
         $ngModel.$render();
